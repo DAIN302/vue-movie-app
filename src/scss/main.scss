@@ -1,0 +1,18 @@
+// 색상 변수 
+$primary : #BE9BCD;
+// container의 가로 크기 변경 변수
+$container-max-widths : (
+    sm : 540px,
+    md : 704px,
+    lg : 964px,
+    xl : 1140px,
+    xxl : 1364px 
+);
+
+
+
+// required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/bootstrap";
