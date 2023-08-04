@@ -1,4 +1,8 @@
 .cashe
 .DS_Store
-node_module
 dist
+node_modules
+.env
+
+# Local Netlify folder
+.netlify

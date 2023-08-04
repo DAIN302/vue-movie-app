@@ -98,7 +98,7 @@ export default {
                     }
                 }
             }   
-            catch(message) {
+            catch({message}) {
                 commit('updateState', {
                     movies : [],
                     message : message
@@ -141,29 +141,8 @@ export default {
     }
 }
 
-function _fetchMovie(payload){
-    // 구조분해
-    const {title, type, year, page, id } = payload
-    const OMDB_API_KEY = 'b938be78'
-    // 파라미터 s - 영화제목 / type - 타입 / y - 영화출시년도 / i - imdbID
-    // 삼항연산자로 id 값이 있으면 앞의 url주소 없으면 뒤의 url 주소 사용
-    const url = id 
-    ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`
-    : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`
-    // XHR XMLHttpRequest의 약자, 웹브라우저와 웹 서버간에 데이터 전송 API
-
-    // 비동기로 처리
-    return new Promise((resolve, reject)=>{
-        axios.get(url).then(res=>{
-            // 추가 예외처리
-            if(res.data.Error){
-                reject(res.data.Error)
-            }
-            // 정상 처리되었을때
-            resolve(res)
-        }).catch(err=>{
-            // 문제가 발생했을때
-            reject(err.message)
-        })
-    })
+async function _fetchMovie(payload){
+    // 첫번째 인수로 데이터 요청, payload 포함해서 전송
+    // post는 데이터를 전송할때 body에 담아서 전송
+    return await axios.post('/.netlify/functions/movie', payload)
 }

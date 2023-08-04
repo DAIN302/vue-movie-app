@@ -3,6 +3,7 @@ const path = require('path') // path라는 전역모듈을 가지고 와서 변�
 const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+const Dotenv = require('dotenv-webpack')
 
 // export
 module.exports = {
@@ -67,9 +68,12 @@ module.exports = {
                 { from : 'static'} // 해당 폴더에 있는 내용이 복사가 되서 dist 폴더 안에 만들어짐
             ]
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new Dotenv()
     ],
     devServer : {
-        host : 'localhost'
+        host : 'localhost',
+        port : 8079,
+        hot : true
     }
 }
